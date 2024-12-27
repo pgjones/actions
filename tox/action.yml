@@ -1,0 +1,34 @@
+name: "Tox CI"
+description: "Run tox"
+inputs:
+  environment:
+    default: ""
+  working-directory:
+    default: "."
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v4
+
+    - name: update pip
+      run: |
+        pip install -U wheel
+        pip install -U setuptools
+        python -m pip install -U pip
+      shell: bash
+
+    - name: Install tox
+      run: pip install tox
+      shell: bash
+
+    - name: Run tox environment ${{ inputs.environment }}
+      if: ${{ inputs.environment != '' }}
+      run: tox -e ${{ inputs.environment }}
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+
+    - name: Run all tox
+      if: ${{ inputs.environment == '' }}
+      run: tox
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}

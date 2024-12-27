@@ -1,0 +1,16 @@
+name: "Publish to PyPI"
+description: "Publishes the artifact to PyPI"
+inputs:
+  environment:
+    default: ""
+  working-directory:
+    default: "."
+runs:
+  using: composite
+  steps:
+    - uses: actions/download-artifact@v4
+
+    - name: Publish package distributions to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        packages-dir: artifact/
