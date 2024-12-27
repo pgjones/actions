@@ -16,14 +16,4 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3.13
-
-      - run: pip install zizmor
-
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-
-      - run: zizmor .
+      - uses: pgjones/actions/zizmor@5ed328a66a6abe85e80ec855208afb33dc53c478
