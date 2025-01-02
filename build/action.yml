@@ -3,8 +3,10 @@ description: "Uploads an artifact of the built package"
 inputs:
   python-version:
     default: "3.13"
+    description: "The Python version"
   working-directory:
     default: "."
+    description: "The working directory"
 runs:
   using: composite
   steps:

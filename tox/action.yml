@@ -3,8 +3,10 @@ description: "Run tox"
 inputs:
   environment:
     default: ""
+    description: "The tox environment to invoke"
   working-directory:
     default: "."
+    description: "The working directory"
 runs:
   using: composite
   steps:
@@ -23,9 +25,11 @@ runs:
 
     - name: Run tox environment ${{ inputs.environment }}
       if: ${{ inputs.environment != '' }}
-      run: tox -e ${{ inputs.environment }}
+      run: tox -e $TOX_ENV
       shell: bash
       working-directory: ${{ inputs.working-directory }}
+      env:
+        TOX_ENV: ${{ inputs.environment }}
 
     - name: Run all tox
       if: ${{ inputs.environment == '' }}

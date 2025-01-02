@@ -3,6 +3,7 @@ description: "Run zizmor"
 inputs:
   working-directory:
     default: "."
+    description: "The working directory"
 runs:
   using: composite
   steps:
